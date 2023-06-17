@@ -1,0 +1,30 @@
+<nav class="bg-primary">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">STUDYSTREAMLINE</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/about">ABOUT US</a></li>
+          <li><a href="/acco">SignUp/LogIn</a></li>
+          <li><a class="dropdown-trigger" href="/category/" data-target="dropdown1">CATEGORIES<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li>
+            <form action="{% url 'search_results' %}" method="GET">
+              <div class="input-field" style="display: flex; align-items: center;">
+                <input type="text" name="query" placeholder="Search...">
+                <button type="submit" class="btn-floating btn-small waves-effect waves-light" style="margin-left: 5px;">
+                  <i class="material-icons">search</i>
+                </button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    {% for cat in cats %}
+      <li><a href="/category/{{ cat.url }}">{{ cat.title }}</a></li>
+    {% endfor %}
+  </ul>
+  

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Choose Your Option</h1>
+    <p>Please select a button</p>
+
+    <div>
+        <a class="button" href="{% url 'login' %}">Login</a>
+        <a class="button" href="{% url 'create_user' %}">Sign Up</a>
+        <a class="button" href="{% url 'admin:index' %}">Admin</a>
+    </div>
+    <br>
+    <br>
+{% endblock %}

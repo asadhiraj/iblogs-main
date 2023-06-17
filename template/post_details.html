@@ -1,0 +1,89 @@
+{%extends 'base.html' %}
+
+{%block title%} {{post.title}} {%endblock%}
+
+{%block content%}
+
+
+<div class="container-custom">
+
+
+    <div class="row">
+        <div class="col s12 m10">
+
+            <h3>{{post.title}}</h3>
+
+            <a href="/category/{{ post.cat.url }}" style="color: #999; margin-left: 5px; font-size:18px;">({{ post.cat.title }})</a>
+            <br>
+            <img src="/media/{{post.image}}" class="responsive-img" alt="">
+
+            <br>
+            <p>
+                {{post.content|safe}}
+            </p>
+
+        </div>
+
+        <div class="row" style="position: relative; top: 10px; margin-right:450px; margin-left:20px; width: 66.666%;">
+            <div class="col-12" >
+        
+                <h4>Comments</h4>
+                {% for comment in comments %}
+                    <p>
+                        <strong style="font-size:20px;">{{ comment.author }}</strong> ------ {{ comment.created_at|date:"F d, Y H:i" }}: <br> 
+                        {{ comment.content }}
+                    </p>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+                
+                <h4>Add a Comment</h4>
+                <form method="post" action="{% url 'post_details' url=post.url %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+                </form>
+              <!-- Comment section -->
+            </div>
+        </div>
+
+        <div class="col s12 m2" style="float:right; margin-top:-1500px;">
+
+
+            {% for cat in cats %}
+
+            <div class="card item" style="margin-left:10px;">
+
+                <div class="img-container">
+
+                    <img src="/media/{{cat.image}}" class="responsive-img" alt="">
+
+                </div>
+                <div class="card-content">
+
+                    <b>
+                        {{cat.title}}
+                    </b>
+
+                    <p class="truncate">{{cat.description}}</p>
+                    <div class="container center-align mt20">
+                        <a href="/category/{{cat.url}}" class="btn bg-primary">VIEW</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            {%endfor%}
+
+
+        </div>
+    </div>
+
+</div>
+
+        
+        {%endblock%}
+        
+        

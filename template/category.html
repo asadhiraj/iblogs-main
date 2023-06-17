@@ -1,0 +1,33 @@
+{%extends 'base.html' %}
+
+{%block title%} {{cat.title}} {%endblock%}
+
+{%block content%}
+
+
+<div class="container-custom">
+
+    <h3>{{cat.title}}</h3>
+    <h5>{{cat.description}}</h5>
+    <div class="img-container">
+        <img src="/media/{{cat.image}}" class="responsive-img" style="max-height:250px;width:100%;object-fit:cover;"
+             alt="">
+    </div>
+
+    <div class="collection">
+        {% for p in posts %}
+        <a href="/blog/{{ p.url }}" class="collection-item" style="display: block; padding: 10px 15px; background-color: #f2f2f2; border-radius: 5px; margin-bottom: 10px; text-decoration: none; color: #333; transition: background-color 0.3s;">
+          {{ p.title }}
+        </a>
+        {% empty %}
+        <h3>No posts in this category</h3>
+        {% endfor %}
+      </div>
+      
+
+    </div>
+
+
+</div>
+
+{%endblock%}
