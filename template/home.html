@@ -1,97 +1,75 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 
-{%block title%} Welcome to STUDYSTREAMLINE {%endblock%}
+{% block title %} Welcome to STUDYSTREAMLINE {% endblock %}
 
-{%block content%}
-
+{% block content %}
 
 <div class="container-custom">
-
 
     <!-- Set up your HTML -->
     <div class="owl-carousel">
 
-
         {% for cat in cats %}
 
-        <div class="card item" style="margin-left:10px;">
+        <div class="card item" style="margin-left:10px; width: 200px; height: 300px;">
 
             <div class="img-container">
-
-                <img src="/media/{{cat.image}}" class="responsive-img" alt="">
-
+                <img src="/media/{{ cat.image }}" class="responsive-img" alt="">
             </div>
+
             <div class="card-content">
-
                 <div class="card-title">
-                    {{cat.title}}
+                    {{ cat.title }}
                 </div>
-
-                <p class="truncate">{{cat.description}}</p>
+                <p class="truncate">{{ cat.description }}</p>
                 <div class="container center-align mt20">
-                    <a href="/category/{{cat.url}}" class="btn bg-primary">VIEW</a>
+                    <a href="/category/{{ cat.url }}" class="btn bg-primary">VIEW</a>
                 </div>
-
             </div>
-
 
         </div>
 
-        {%endfor%}
+        {% endfor %}
 
     </div>
 
-
 </div>
-
 
 <div class="container">
-
     <div class="row">
-
         <div class="col s12 ">
 
-
-            {%for p in posts %}
+            {% for p in posts %}
 
             <div class="row">
-
                 <div class="col s12 m8">
-
-
-                    {{p.content |truncatewords:60 | safe}}
+                    {{ p.content | truncatewords:60 | safe }}
                     <div class="mt20">
-                        <a href="/blog/{{p.url}}" class="btn  bg-primary ">Read More..</a>
+                        <a href="/blog/{{ p.url }}" class="btn bg-primary">Read More..</a>
                     </div>
                 </div>
-
                 <div class="col s12 m4">
-                    <img src="/media/{{p.image}}" class="responsive-img" style="margin-top:50px;">
-
+                    <img src="/media/{{ p.image }}" class="responsive-img" style="margin-top:50px;">
                 </div>
-
             </div>
 
-
-            {%endfor %}
-
+            {% endfor %}
 
         </div>
-
-
     </div>
+</div>
 
-</div>
 <!-- display pagination links -->
-<div style='text-align:center; font-weight:bold; text-size:40px;'>
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-    {% endif %}
-    <span class="current-page">{{ page_obj.number }}</span>
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Next</a>
-    {% endif %}
+<div style="text-align:center; font-weight:bold; font-size:40px;">
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="current-page">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
 </div>
-</div>
-{%endblock%}
+
+{% endblock %}
