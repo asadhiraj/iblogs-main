@@ -21,7 +21,7 @@ def home(request):
     all_posts = Post.objects.all()
 
     # create a Paginator object with a desired number of posts per page
-    posts_per_page = 4
+    posts_per_page = 5
     paginator = Paginator(all_posts, posts_per_page)
 
     # get the current page number from the request's GET parameters
